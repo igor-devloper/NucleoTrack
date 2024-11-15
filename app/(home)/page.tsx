@@ -9,10 +9,16 @@ import {
 } from "../api/latest-info";
 import { Cards } from "./components/cards";
 import { ProductionChart } from "./components/charts";
-import { format } from "date-fns-tz";
 
 export default async function Home() {
-  const formattedDate = format(new Date(updatedAt), "dd.MMMM.yyyy HH:mm:ss", { locale: ptBR });
+  const formatoData = new Intl.DateTimeFormat('pt-BR', {
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit'
+  }).format(updatedAt);
   return (
     <>
       <Navbar />
@@ -20,7 +26,7 @@ export default async function Home() {
         <h1 className="text-lg font-bold md:text-2xl">Dashboard</h1>
         <div className="flex items-center te">
           <p className="text-sm text-muted-foreground">
-            {formattedDate}
+            {formatoData}
           </p>
         </div>
       </div>

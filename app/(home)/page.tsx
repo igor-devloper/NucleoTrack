@@ -1,3 +1,4 @@
+import { ptBR } from "date-fns/locale";
 import { Navbar } from "../_components/navbar";
 import {
   updatedAt,
@@ -11,8 +12,7 @@ import { ProductionChart } from "./components/charts";
 import { format } from "date-fns-tz";
 
 export default async function Home() {
-  const timeZone = "America/Sao_Paulo";
-  const formattedDate = format(new Date(updatedAt), "dd.MMMM.yyyy HH:mm:ss", { timeZone });
+  const formattedDate = format(new Date(updatedAt), "dd.MMMM.yyyy HH:mm:ss", { locale: ptBR });
   return (
     <>
       <Navbar />

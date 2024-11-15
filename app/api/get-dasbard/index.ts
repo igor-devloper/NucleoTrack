@@ -6,6 +6,10 @@ export async function getDasboard() {
     orderBy: { id: 'desc' },
     take: 1,
   });
+  const config = {
+    runtime: 'nodejs', // Assegura que a execução ocorra no lado do servidor
+    revalidate: 0,     // Desativa o cache da Vercel
+  };
   const latestDailyProductionData = await db.infos.findMany({
     select: { daily_production: true },
     orderBy: { id: 'desc' },
@@ -33,6 +37,7 @@ export async function getDasboard() {
     latestMonthlyProduction: latestMonthlyProductionData[0]?.monthly_production ?? 0,
     latestAnnualProduction: latestAnnualProductionData[0]?.annual_production ?? 0,
     updatedAt: updatedData[0]?.updatedAt ?? new Date(),
+    config
   };
 
 }

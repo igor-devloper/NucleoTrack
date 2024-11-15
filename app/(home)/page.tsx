@@ -1,3 +1,4 @@
+export const revalidate = 0;
 import { Navbar } from "../_components/navbar";
 import { getDasboard } from "@/app/api/get-dasbard";
 import { Cards } from "./components/cards";
@@ -36,9 +37,9 @@ export default async function Home() {
       </div>
       <div className="grid grid-cols-2 p-6">
         <ProductionChart
-          Mensal={Number(dashboard.latestPowerOutput)}
+          Mensal={Number(dashboard.latestMonthlyProduction)}
           Diaria={Number(dashboard.latestDailyProduction)}
-          Anual={Number(dashboard.latestMonthlyProduction)}
+          Anual={Number(dashboard.latestAnnualProduction)}
         />
       </div>
     </>

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: "NucleoTrack - Monitoramento",
   description: "Site de Monitoramento de usinas da Nucleo energy",
 };
-
+// console.log("Payload: ", payload);
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -22,6 +22,7 @@ export default function RootLayout({
         className={`${mulish.className} antialiased dark`}
       >
         {children}
+        
       </body>
     </html>
   );

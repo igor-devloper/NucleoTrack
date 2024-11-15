@@ -1,10 +1,18 @@
 import { Navbar } from "../_components/navbar";
-import { updatedAt, latestPowerOutput, latestDailyProduction, latestMonthlyProduction, latestAnnualProduction } from "../api/latest-info";
+import {
+  updatedAt,
+  latestPowerOutput,
+  latestDailyProduction,
+  latestMonthlyProduction,
+  latestAnnualProduction,
+} from "../api/latest-info";
 import { Cards } from "./components/cards";
 import { ProductionChart } from "./components/charts";
+import { format } from "date-fns-tz";
 
 export default async function Home() {
- 
+  const timeZone = "America/Sao_Paulo";
+  const formattedDate = format(new Date(updatedAt), "dd.MMMM.yyyy HH:mm:ss", { timeZone });
   return (
     <>
       <Navbar />
@@ -12,15 +20,7 @@ export default async function Home() {
         <h1 className="text-lg font-bold md:text-2xl">Dashboard</h1>
         <div className="flex items-center te">
           <p className="text-sm text-muted-foreground">
-            {new Date(updatedAt).toLocaleString("pt-BR", {
-              day: "2-digit",
-              month: "short",
-              year: "numeric",
-              hour: "2-digit",
-              minute: "2-digit",
-              second: "2-digit",
-              hour12: false, // Usa formato 24 horas
-            })}
+            {formattedDate}
           </p>
         </div>
       </div>
@@ -37,7 +37,11 @@ export default async function Home() {
         <Cards title="Produção Anual" value={Number(latestAnnualProduction)} />
       </div>
       <div className="grid grid-cols-2 p-6">
-        <ProductionChart Mensal={Number(latestMonthlyProduction)} Diaria={Number(latestDailyProduction)} Anual={Number(latestAnnualProduction)} />
+        <ProductionChart
+          Mensal={Number(latestMonthlyProduction)}
+          Diaria={Number(latestDailyProduction)}
+          Anual={Number(latestAnnualProduction)}
+        />
       </div>
     </>
   );

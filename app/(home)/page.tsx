@@ -32,7 +32,7 @@ export default async function Home() {
         <Cards title="Usinas Online" value={Number(dashboard.latestPowerOutput)} />
         <Cards title="Produção Diaria" value={Number(dashboard.latestDailyProduction)} />
         <Cards title="Produção Mensal" value={Number(dashboard.latestMonthlyProduction)} />
-        <Cards title="Produção Anual" value={Number(dashboard.latestMonthlyProduction)} />
+        <Cards title="Produção Anual" value={Number(dashboard.latestAnnualProduction)} />
       </div>
       <div className="grid grid-cols-2 p-6">
         <ProductionChart

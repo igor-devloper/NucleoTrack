@@ -1,4 +1,3 @@
-import { ptBR } from "date-fns/locale";
 import { Navbar } from "../_components/navbar";
 import {
   updatedAt,

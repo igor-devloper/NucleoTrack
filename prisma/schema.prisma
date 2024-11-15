@@ -1,0 +1,43 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// prisma/schema.prisma
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  // uncomment next line if you use Prisma <5.10
+  // directUrl = env("DATABASE_URL_UNPOOLED")
+}
+
+model PowerPlants {
+  id              String   @id @default(uuid())
+  location        String?
+  production      Decimal?
+  dailyProduction Decimal?
+  totalProduction Decimal?
+  peakHours       Decimal?
+  climate         String?
+  time            Int?
+  networkStatus   String?
+  typeOfPlant     String?
+  typeOfSystem    String?
+  capacity        Decimal?
+  updatedAt       DateTime @default(now())
+}
+
+
+model infos {
+  id                Int      @id @default(autoincrement())
+  power_output      Decimal  @db.Decimal(10, 2)
+  daily_production  Decimal  @db.Decimal(10, 2)
+  monthly_production Decimal @db.Decimal(10, 2)
+  annual_production Decimal  @db.Decimal(10, 2)
+  updatedAt DateTime @default(now())
+}
